@@ -11,7 +11,7 @@ su vagrant <<'EOF'
   mkdir -p /home/vagrant/.nerves-cache
   git clone https://github.com/nerves-project/nerves-sdk.git /home/vagrant/nerves-sdk
   cd /home/vagrant/nerves-sdk
-  make nerves_rpi_defconfig
+  make nerves_bbb_defconfig
   make
 EOF
 

@@ -19,7 +19,11 @@ brew cask install vagrant
 The VagrantFile describes the VM setup (important to increase the default memory size and use the specified version
 of Ubuntu - newer versions don't appear to have the correct libraries available). The `nerves-bootstrap.sh` file is
 run when the vagrant environment is initially started with `vagrant up` or by running `vagrant provision`. It will
-download the Nerves project and build an image for the Raspberry Pi.
+download the Nerves project and build an image for the Raspberry Pi and/or BeagleBone Black.
+
+In order to choose the target platform, changing the command in nerves_bootstrap.sh file:
+  - make nerves_rpi_defconfig (for Raspberry Pi)
+	- make nerves_bbb_defconfig (for BeagleBone Black)
 
 The default Raspberry Pi setup makes the HDMI output the console. To make the debug console be the default output, 
 ssh to the image and modify the file `~/nerves-sdk/board/nerves-common/rootfs-additions/etc/erlinit.config` and run `make` again.
@@ -27,7 +31,12 @@ ssh to the image and modify the file `~/nerves-sdk/board/nerves-common/rootfs-ad
 For info on connecting to the Raspberry Pi via the USB console cable, see: https://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-5-using-a-console-cable.pdf
 You will need the appropriate USB-serial driver from here: http://sourceforge.net/projects/osx-pl2303/
 
-When finished, run `vagrant ssh` to connect to the VM. Then run:
+
+When finished, run `vagrant ssh` to connect to the VM. 
+/usr/bin/vagrant ssh
+
+
+Then run:
 ```
 cp nerves-sdk/buildroot/output/images/nerves-rpi-base.img /vagrant/
 ```
@@ -53,3 +62,32 @@ an Erlang console.
 SD card creation instructions from: http://elinux.org/RPi_Easy_SD_Card_Setup#Flashing_the_SD_card_using_Mac_OSX
 See the section: _Using command line tools (1)_
 
+
+
+
+## Miscellaneous
+Check where the vagrant is installed:
+```
+where vagrant
+```
+
+Check what version the vagrant is:
+```
+vagrant -v
+```
+
+Exit vagrant:
+```
+vagrant -halt
+```
+
+Remove vagrant from rvm gemest
+```
+rvm gem list
+rvm gem uninstall vagrant
+```
+
+Check vagrant environment
+```
+vagrant global-status
+```
