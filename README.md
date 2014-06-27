@@ -31,6 +31,8 @@ ssh to the image and modify the file `~/nerves-sdk/board/nerves-common/rootfs-ad
 For info on connecting to the Raspberry Pi via the USB console cable, see: https://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-5-using-a-console-cable.pdf
 You will need the appropriate USB-serial driver from here: http://sourceforge.net/projects/osx-pl2303/
 
+For info on connection to BealgeBoneBlack via the USB console cable, see:
+https://learn.adafruit.com/ssh-to-beaglebone-black-over-usb/installing-drivers-mac
 
 When finished, run `vagrant ssh` to connect to the VM. 
 /usr/bin/vagrant ssh
