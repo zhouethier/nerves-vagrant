@@ -23,7 +23,7 @@ download the Nerves project and build an image for the Raspberry Pi and/or Beagl
 
 In order to choose the target platform, changing the command in nerves_bootstrap.sh file:
   - make nerves_rpi_defconfig (for Raspberry Pi)
-	- make nerves_bbb_defconfig (for BeagleBone Black)
+  - make nerves_bbb_defconfig (for BeagleBone Black)
 
 The default Raspberry Pi setup makes the HDMI output the console. To make the debug console be the default output, 
 ssh to the image and modify the file `~/nerves-sdk/board/nerves-common/rootfs-additions/etc/erlinit.config` and run `make` again.
@@ -40,17 +40,23 @@ When finished, run `vagrant ssh` to connect to the VM.
 
 Then run:
 ```
-cp nerves-sdk/buildroot/output/images/nerves-rpi-base.img /vagrant/
+cp nerves-sdk/buildroot/output/images/nerves-bbb-base.img /vagrant/
 ```
 To copy the SD card image back to the host machine (the `/vagrant` directory is mapped back to the directory of the
 VagrantFile on the host machine).
+```
+e.g., on my Mac the vagrant file locates at
+~/Projects/OE/BeagleBoneBlack/nerves-vagrant
+````
+
 
 On the host machine (MacOS X), insert the SD card and run the following commands:
+(see http://www.embeddedarm.com/support/faqs.php?item=10)
 ```
 diskutil list
 # note the /dev/disk# of the SD card
 diskutil unmountDisk /dev/disk#
-sudo dd if=nerves-rpi-base.img of=/dev/rdisk# bs=1m
+sudo dd if=nerves-bbb-base.img of=/dev/rdisk# bs=1m
 ```
 
 Insert the SD card into the Raspberry Pi, then run:
@@ -93,3 +99,7 @@ Check vagrant environment
 ```
 vagrant global-status
 ```
+
+The UART cable to connect BBB to Mac:
+http://www.digikey.com/product-search/en?pv392=2427&FV=fff4004d%2Cfff80054%2C2e004ec&k=olimex&mnonly=0&newproducts=0&ColumnSort=0&page=1&quantity=0&ptm=0&fid=0&pageSize=25
+
